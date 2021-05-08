@@ -17,10 +17,10 @@ void printCpuLoad(long index, double cpuLoad, std::list<double>& cpuAverage) {
     printf("%i %04d.%02d.%02d %02d:%02d:%02d :", index, time.wYear, time.wMonth, time.wDay, time.wHour, time.wMinute,
         time.wSecond);
     if (cpuLoad != -1)
-        printf(" [CPU Load:\t%.2f%%]", cpuLoad);
+        printf(" [CPU Load: %.2f%%]", cpuLoad);
     for (double value : cpuAverage) {
         if (value != -1)
-            printf(" [%isec avg:\t%.2f%%]", i * 5, value);
+            printf(" [%isec avg: %.2f%%]", i * 5, value);
         i++;
     }
     printf("\n");
@@ -34,7 +34,7 @@ int main() {
 
 
     while (1) {
-        if (cpu.refreshCpuLoad() == -1)
+        if (cpu.refreshCpuLoad() == false)
             return 84;
         cpuLoad = cpu.getCpuLoad();
         cpuAverage = cpu.getAverage();
